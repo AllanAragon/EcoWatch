@@ -1,0 +1,164 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EcoWatch.Views.IssuesListPage"
+             Title="EcoWatch">
+    
+    <!-- Toolbar Items -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Add Issue" 
+            Priority="0"
+            Order="Primary"
+            Clicked="OnAddIssueClicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#x002b;"
+                                 FontFamily="FontAwesome"
+                                 Size="24"
+                                 Color="Green" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Refresh"
+            Priority="0"
+            Order="Primary"
+            Clicked="refresh_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#xf0450;"
+                                 FontFamily="MaterialDesignIcons"
+                                 Size="24"
+                                 Color="Green" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <!-- Page Content -->
+    <Grid  RowDefinitions="Auto, Auto,*,Auto">
+         <Grid ColumnDefinitions="auto,*" Grid.Row="0" BackgroundColor="Green">
+
+            <Label Text="Issue List"
+             FontAttributes="Bold"
+             FontSize="20"
+                   Grid.Column="1"
+             TextColor="White"
+                   VerticalOptions="Center"
+             HorizontalOptions="Start"/>
+        
+     <Button x:Name="Back"
+             Grid.Row="0"
+             BackgroundColor="Transparent"
+             HorizontalOptions="Start"
+             Clicked="Back_Clicked">
+                <Button.ImageSource> 
+            <FontImageSource FontFamily="MaterialDesignIcons"
+             Glyph="&#xf004d;"
+             Size="30"
+              Color="White" />
+            </Button.ImageSource>
+
+     </Button>
+        </Grid>
+
+
+        <!-- Overview Summary -->
+       <Frame Padding="5" BackgroundColor="#E8F5E9" CornerRadius="0" Margin="0,0,0,0" Grid.Row="1" HasShadow="True">
+            <StackLayout Spacing="10">
+                 <!-- Statistics Grid -->
+                <Grid ColumnSpacing="5" RowSpacing="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Open Issues -->
+                    <Button BackgroundColor="Transparent" 
+                            Text="{Binding OpenIssues}" 
+                            FontSize="18"
+                            x:Name="btnOpen"
+                            FontAttributes="None" 
+                            TextColor="Green" 
+                            Grid.Column="0" 
+                            HorizontalOptions="Center" 
+                            Clicked="FilterButton_Clicked"/>
+
+                    <!-- Closed Issues -->
+                    <Button BackgroundColor="Transparent" 
+                            Text="{Binding ResolvedIssues}" 
+                            FontSize="18" 
+                            x:Name="btnResolve"
+                            FontAttributes="None" 
+                            TextColor="Green" 
+                            Grid.Column="1" 
+                            HorizontalOptions="Center" 
+                            Clicked="FilterButton_Clicked"/>
+
+                    <!-- Total Issues -->
+                    <Button BackgroundColor="Transparent" 
+                            Text="{Binding AllIssues}" 
+                            FontSize="18" 
+                            x:Name="btnAll"
+                            FontAttributes="Bold" 
+                            TextColor="Green" 
+                            Grid.Column="2" 
+                            HorizontalOptions="Center" 
+                            Clicked="FilterButton_Clicked"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+         
+        <!-- Issues List -->
+        <CollectionView ItemsSource="{Binding FilteredIssues}" SelectionMode="Single" Grid.Row="2" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>  
+                    <Frame Padding="15" Margin="10" BorderColor="#BDBDBD" CornerRadius="0" HasShadow="False" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5">
+                            <!-- Title Label -->
+                            <Label Text="{Binding Title}" 
+                                   FontAttributes="Bold" 
+                                   FontSize="18" 
+                                   TextColor="#333333" 
+                                   LineBreakMode="TailTruncation" />
+
+                            <!-- Description Label -->
+                            <Label Text="{Binding NarrativeSummary}" 
+                                   FontSize="14" 
+                                   TextColor="#757575" 
+                                   LineBreakMode="WordWrap" />
+
+                            <!-- Additional Visual Element -->
+                            <Image HeightRequest="30" WidthRequest="30" HorizontalOptions="End" IsVisible="{Binding IsResolved}" >
+                                    <Image.Source>
+                                        <FontImageSource Glyph="&#x2713;"
+                                                         FontFamily="FontAwesome"
+                                                         Size="48"
+                                                         Color="Green" />
+                                    </Image.Source>
+                                </Image>
+                            <Grid>
+                                 
+                                <Label Text="Issue Resolved" 
+                                       FontSize="12"
+                                       IsVisible="{Binding IsResolved}"
+                                       TextColor="#4CAF50" 
+                                       HorizontalOptions="End" 
+                                       VerticalOptions="Center" />
+                            </Grid> 
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+          <!-- Filter -->
+        <Grid Margin="0,10,0,0" IsVisible="True" Grid.Row="3"
+              ColumnDefinitions="*,auto">
+            <Entry Placeholder="Search Issue..." 
+                   HorizontalOptions="FillAndExpand"
+                   PlaceholderColor="Gray"
+                   Grid.Column="0"
+                   VerticalOptions="Center"
+                   x:Name="txtSearch"
+                   Margin="0" />
+            <Button Text="Search" Grid.Column="1" Clicked="FilterButton_Clicked" x:Name="btnSearch"/>
+        </Grid>
+    </Grid>
+</ContentPage>

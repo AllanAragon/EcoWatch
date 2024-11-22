@@ -1,0 +1,88 @@
+﻿<Shell
+    x:Class="EcoWatch.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:EcoWatch"
+    Shell.FlyoutBehavior="Flyout"
+    Title="EcoWatch">
+
+    <!-- Flyout Header -->
+     <Shell.FlyoutHeader>
+        <Grid BackgroundColor="#126800" Padding="10">
+            <!-- User Info Section -->
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Image HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" >
+                    <Image.Source>
+                        <FontImageSource Glyph="&#xf007;"
+                                         FontFamily="FontAwesome"
+                                         Size="48"
+                                         Color="White" />
+                    </Image.Source>
+                </Image>
+                <Label x:Name="UserNameLabel" Text="Guest"
+                       TextColor="White" FontSize="Large"
+                       HorizontalOptions="Center" Margin="5,10,5,0" />
+                <Label Text="Welcome to EcoWatch!"
+                       TextColor="White" FontSize="Small"
+                       HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+
+    <!-- Main Pages -->
+    <ShellContent Title="Login"
+                  x:Name="LoginItem"
+                      Route="LoginPage"
+                      ContentTemplate="{DataTemplate local:Views.LoginPage}" >
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FontAwesome"
+                     Glyph="&#xf05a;"
+                     Size="40"
+                      Color="#2E7D32" /> 
+            </ShellContent.Icon>
+        </ShellContent>
+    
+    <FlyoutItem Title="Home" x:Name="HomeItem" IsVisible="True">
+        <FlyoutItem.Icon>
+             <FontImageSource FontFamily="FontAwesome"
+             Glyph="&#xf015;"
+             Size="40"
+              Color="#2E7D32" />
+
+        </FlyoutItem.Icon>
+        <ShellContent Title="Map View"
+                      Route="IssuesMapPage" 
+                      ContentTemplate="{DataTemplate local:Views.IssuesMapPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="About">
+        <FlyoutItem.Icon>
+             <FontImageSource FontFamily="FontAwesome"
+             Glyph="&#xf05a;"
+             Size="40"
+              Color="#2E7D32" />
+
+        </FlyoutItem.Icon>
+
+        <ShellContent Title="About"
+                      Route="AboutPage"
+                      ContentTemplate="{DataTemplate local:Views.AboutPage}" />
+    </FlyoutItem>
+
+
+    <!-- Footer -->
+   <Shell.FlyoutFooter>
+        <StackLayout BackgroundColor="#EEEEEE" Padding="10" Spacing="5">
+            <Button Text="Logout" Clicked="MenuItem_Clicked" CornerRadius="25" BackgroundColor="Green" x:Name="btnLogout" IsVisible="False"></Button>
+            <Label Text="EcoWatch v1.0 build 1.0"
+                   TextColor="#2E7D32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+            <Label Text="MITS006 - Mobile Programming Project"
+                   TextColor="#2E7D32"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>

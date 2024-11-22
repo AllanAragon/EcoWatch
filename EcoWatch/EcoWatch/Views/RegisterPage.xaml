@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EcoWatch.Views.RegisterPage"
+             Title="RegisterPage">
+     <ScrollView>
+        <StackLayout Padding="20">
+            <Button HorizontalOptions="End" BackgroundColor="Transparent"
+                    Clicked="Back_Clicked">
+            <Button.ImageSource> 
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                 Glyph="&#xf0156;"
+                 Size="40"
+                  Color="#126800" />
+             </Button.ImageSource>
+
+            </Button>
+            <Image Source="eco_logo.png" HeightRequest="100" />
+            <Label Text="Register" 
+                   FontSize="32"
+                   TextColor="#126800"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,10" />
+
+            <!-- Full Name Field -->
+            <Label Text="Full Name" />
+            <Entry x:Name="fullNameEntry" Placeholder="Enter your full name" />
+
+            <!-- Email Field -->
+            <Label Text="Email" />
+            <Entry x:Name="emailEntry" Placeholder="Enter your email" Keyboard="Email" />
+
+            <!-- Password Field -->
+            <Label Text="Password" />
+            <Entry x:Name="passwordEntry" Placeholder="Enter your password" IsPassword="True" />
+
+            <!-- Confirm Password Field -->
+            <Label Text="Confirm Password" />
+            <Entry x:Name="confirmPasswordEntry" Placeholder="Confirm your password" IsPassword="True" />
+
+            <!-- Error Message -->
+            <Label x:Name="errorMessage" 
+                   TextColor="Red" 
+                   IsVisible="False" 
+                   FontSize="Small"
+                   Margin="0,10,0,0" />
+
+            <!-- Register Button -->
+            <Button Text="Register"
+                    CornerRadius="25"
+                    Clicked="OnRegisterClicked"
+                    BackgroundColor="#126800"
+                    TextColor="White"
+                    Margin="0,20,0,0" />
+               <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#126800" VerticalOptions="Center" HorizontalOptions="Center" />
+ 
+            <Label Text="Registering new user..." IsVisible="{Binding IsBusy}" TextColor="#126800" HorizontalOptions="Center" FontSize="14" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

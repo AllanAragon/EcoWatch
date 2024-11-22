@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EcoWatch.Views.AboutPage"
+             Title="About">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- App Title Section -->
+            <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                <Image Source="eco_logo.png" HeightRequest="100" />
+                <Label 
+                    Text="A Mobile Application for Sustainable Development"
+                    FontAttributes="Italic"
+                    FontSize="16"
+                    TextColor="#555555"
+                    HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <!-- Description Section -->
+            <Frame BackgroundColor="#F9F9F9" CornerRadius="10" Padding="15" BorderColor="#E0E0E0">
+                <VerticalStackLayout Spacing="10">
+                    <Label 
+                        Text="EcoWatch is a mobile application designed to enable communities to report and monitor environmental issues, focusing on the Sustainable Development Goals (SDGs), particularly SDG 11: Sustainable Cities and Communities and SDG 13: Climate Action."
+                        FontSize="14"
+                        TextColor="#444444"
+                        LineBreakMode="WordWrap" />
+
+                    <Label 
+                        Text="The app empowers users to take environmental action by allowing them to report issues such as waste accumulation, waterway blockages, and pollution through a straightforward interface. Users can upload images, describe the issue, and mark precise locations on a map, providing real-time data that authorities and NGOs can use for immediate action."
+                        FontSize="14"
+                        TextColor="#444444"
+                        LineBreakMode="WordWrap" />
+
+                    <Label 
+                        Text="By crowdsourcing information and enhancing accessibility, EcoWatch fosters transparency and a collaborative approach to addressing local environmental challenges. The app also offers a map view to visualize reported issues, encouraging community awareness and engagement. Through EcoWatch, we aim to drive actionable insights and bolster community-driven environmental stewardship."
+                        FontSize="14"
+                        TextColor="#444444"
+                        LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Separator -->
+            <BoxView HeightRequest="1" BackgroundColor="#E0E0E0" />
+
+            <!-- Project Proponents Section -->
+            <VerticalStackLayout>
+                <Label  
+                    Text="Project Proponents"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    TextColor="#126800"
+                    Margin="0,0,0,10" />
+
+                <!-- List of Proponents -->
+                <VerticalStackLayout Spacing="10">
+                    <Frame Padding="10" BackgroundColor="#F5F5F5" CornerRadius="8" BorderColor="#E0E0E0">
+                        <VerticalStackLayout>
+                        <Label FontSize="14" FontAttributes="Bold" Text="Rogene Abijay" />
+                        <Label FontSize="12" FontAttributes="None" Text="UIC - MIT Student" TextColor="#757575" />
+                    </VerticalStackLayout>
+                    </Frame>
+                    <Frame Padding="10" BackgroundColor="#F5F5F5" CornerRadius="8" BorderColor="#E0E0E0">
+                        <VerticalStackLayout>
+                        <Label FontSize="14" FontAttributes="Bold" Text="Allan Aragon" />
+                        <Label FontSize="12" FontAttributes="None" Text="UIC - MIT Student" TextColor="#757575" />
+                        </VerticalStackLayout>
+                    </Frame>
+                    <Frame Padding="10" BackgroundColor="#F5F5F5" CornerRadius="8" BorderColor="#E0E0E0">
+                        <VerticalStackLayout>
+                            <Label FontSize="14" FontAttributes="Bold" Text="Hazel Joy Gadingan"/>
+                            <Label FontSize="12" FontAttributes="None" Text="UIC - MIT Student" TextColor="#757575" />
+ 
+                        </VerticalStackLayout>
+                        </Frame>
+                    <Frame Padding="10" BackgroundColor="#F5F5F5" CornerRadius="8" BorderColor="#E0E0E0">
+                        <VerticalStackLayout>
+                            <Label FontSize="14" FontAttributes="Bold" Text="April Joy Uy" />
+                            <Label FontSize="12" FontAttributes="None" Text="UIC - MIT Student" TextColor="#757575" />
+                        </VerticalStackLayout>
+                        
+                    </Frame>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

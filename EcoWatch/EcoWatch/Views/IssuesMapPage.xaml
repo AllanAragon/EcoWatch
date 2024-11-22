@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             x:Class="EcoWatch.Views.IssuesMapPage"
+             Title="EcoWatch">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Add Issue"   
+            Priority="0"
+            Order="Primary"
+            Clicked="OnAddIssueClicked" >
+            <ToolbarItem.IconImageSource>
+                 <FontImageSource Glyph="&#x002b;"
+                                     FontFamily="FontAwesome"
+                                     Size="24"
+                                     Color="Green" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="Refresh"   
+            Priority="0"
+            Order="Primary"
+            Clicked="refresh_Clicked" >
+            <ToolbarItem.IconImageSource>
+                 <FontImageSource Glyph="&#xf0450;"
+                                     FontFamily="MaterialDesignIcons"
+                                     Size="24"
+                                     Color="Green" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+          <ToolbarItem 
+            Text="ListView"   
+            Priority="0"
+            Order="Primary"
+            Clicked="ListView_Clicked" >
+            <ToolbarItem.IconImageSource>
+                 <FontImageSource Glyph="&#xf0279;"
+                                     FontFamily="MaterialDesignIcons"
+                                     Size="24"
+                                     Color="#126800" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+       
+        <!-- Map Control -->
+        <maps:Map x:Name="IssueMap"
+                  MapType="Street"
+                  IsShowingUser="True"
+                  VerticalOptions="FillAndExpand" />
+
+        <!-- Popup Overlay for Issue Details -->
+        <ContentView x:Name="PopupOverlay"
+                     IsVisible="False"
+                     BackgroundColor="Transparent"
+                     Padding="10,20,10,20" 
+                     VerticalOptions="End"
+                     HorizontalOptions="FillAndExpand">
+    <Frame BackgroundColor="#2C3E50"
+       Padding="10"
+       CornerRadius="0"
+       x:Name="frmIssue"
+       VerticalOptions="End"
+       HorizontalOptions="CenterAndExpand"
+       HasShadow="True">
+    <Grid>
+        <!-- Close Icon Button -->
+        <Button 
+                BackgroundColor="Transparent"
+                Clicked="OnClosePopupClicked"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"
+                TextColor="White"
+                FontAttributes="Bold"
+                ZIndex="1"
+                     Margin="0,0,10,10">
+             <Button.ImageSource> 
+            <FontImageSource FontFamily="MaterialDesignIcons"
+             Glyph="&#xf0156;"
+             Size="40"
+              Color="White" />
+                      </Button.ImageSource>
+
+        </Button>
+
+        <!-- Scrollable Content -->
+        <ScrollView VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20">
+    <StackLayout Spacing="15" BackgroundColor="#2C3E50" Padding="15" >
+        <!-- Header Section -->
+        <Label Text="Issue Details" 
+               FontAttributes="Bold" 
+               FontSize="18" 
+               TextColor="White" 
+               HorizontalOptions="Center" 
+               Margin="0,0,0,10"/>
+
+        <!-- Issue Details -->
+        <StackLayout Spacing="8">
+            <Label x:Name="PopupTitle" 
+                   FontSize="16" 
+                   FontAttributes="Bold" 
+                   TextColor="#ECF0F1" />
+            <Label x:Name="PopupDescription" 
+                   FontSize="14" 
+                   TextColor="#BDC3C7" 
+                   LineBreakMode="WordWrap" />
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Location:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupLocation" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Address:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupAddress" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Reported By:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupReportedBy" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Reported Date:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupReportedDate" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+        </StackLayout>
+
+        <!-- Separator -->
+        <BoxView HeightRequest="1" 
+                 Color="#95A5A6" 
+                 Margin="0,10,0,10" 
+                 IsVisible="True" />
+
+        <!-- Resolution Section -->
+        <StackLayout x:Name="sResolution" IsVisible="False" Spacing="8">
+            <Label Text="Resolution Details" 
+                   FontAttributes="Bold" 
+                   FontSize="18" 
+                   TextColor="White" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,10" />
+            <Label x:Name="PopupSolvedDescription" 
+                   FontSize="14" 
+                   TextColor="#BDC3C7" 
+                   LineBreakMode="WordWrap" />
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Solved Location:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupSolvedLocation" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Solved Address:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupSolvedAddress" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Solved By:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupSolvedBy" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Agencies Involved:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupSolvedAgenciesInvolved" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Label Text="Resolution Date:" 
+                       FontSize="14" 
+                       FontAttributes="Bold" 
+                       TextColor="#ECF0F1" />
+                <Label x:Name="PopupSolvedDate" 
+                       FontSize="14" 
+                       TextColor="#BDC3C7" />
+            </StackLayout>
+        </StackLayout>
+
+        <!-- View More Button -->
+        <Button Text="View More Info" 
+                Clicked="OnViewIssueAsync" 
+                BackgroundColor="Transparent" 
+                HorizontalOptions="End" 
+                VerticalOptions="End" 
+                TextColor="#3498DB" 
+                FontAttributes="Bold" />
+    </StackLayout>
+</ScrollView>
+
+            
+    </Grid>
+</Frame>
+
+        </ContentView>
+        <ActivityIndicator 
+        IsVisible="{Binding IsBusy}" 
+        IsRunning="{Binding IsBusy}" 
+        HorizontalOptions="Center" 
+        VerticalOptions="Center"
+        Color="#126800" />
+        <Label
+            Margin="0,25,0,0"
+            Text="Fetching issues..." FontSize="25"  TextColor="Green" IsVisible="{Binding IsBusy}" 
+        HorizontalOptions="Center" 
+        VerticalOptions="Center"/>
+    </Grid>
+</ContentPage>

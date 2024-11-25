@@ -8,9 +8,7 @@ public partial class LoginPage : ContentPage
 	public LoginPage()
 	{
 		InitializeComponent();
-        BindingContext = viewModel = new LoginViewModel();
-        //emailEntry.Text = "allanaragon123@gmail.com";
-        //passwordEntry.Text = "Allan123$";
+        BindingContext = viewModel = new LoginViewModel(); 
 	}
 
     private async void OnLoginClicked(object sender, EventArgs e)
